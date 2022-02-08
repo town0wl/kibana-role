@@ -1,7 +1,7 @@
 Kibana role
 =========
 
-Роль для установки, начальной конфигурации и запуска Kibana на хостах с ОС: Debian, Ubuntu, CentOS, RHEL.
+Роль для установки, начальной конфигурации и запуска Kibana в виде сервиса на хостах с ОС: Debian, Ubuntu, CentOS, RHEL.
 
 Requirements
 ------------
@@ -15,11 +15,8 @@ Role Variables
 |-----------------------|----------|-------------------------|
 | kibana_version | "7.14.0" | Параметр, который определяет какой версии kibana будет установлен |
 | kibana_install_type | remote | При установке значения 'remote' загрузка дистрибутива происходит через управляющий хост ansible |
+| elastic_service_ip | Cчитывается из ansible facts хоста с именем ***elastic-host*** | IP-адрес сервиса Elasticsearch |
 
-Dependencies
---------------
-
-Для начальной конфигурации Kibana (/etc/kibana/kibana.yml) используется IP-адрес сервера Elasticsearch, который считывается из ansible facts хоста с именем ***elastic-host***.
 
 Example Playbook
 ----------------
