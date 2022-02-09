@@ -1,0 +1,32 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: molecule/tox/requirements.yml
+driver:
+  name: docker
+platforms:
+  - name: centos7
+    image: docker.io/pycontribs/centos:7
+    pre_build_image: true
+    networks:
+      - name: innernet
+    groups:
+      - kibana
+    privileged: true
+    command: /sbin/init
+  - name: elastic-host
+    image: docker.io/pycontribs/centos:7
+    pre_build_image: true
+    exposed_ports:
+      - "9200"
+    networks:
+      - name: innernet
+    groups:
+      - elastic
+    privileged: true
+    command: /sbin/init
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
